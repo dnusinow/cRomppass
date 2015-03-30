@@ -1,5 +1,5 @@
 #' @export
-shine <- function(port = NULL) {
+shine <- function(host = NULL, port = NULL) {
     require("shiny")
     require("cRomppass")
 
@@ -60,6 +60,7 @@ shine <- function(port = NULL) {
                 }
             )
         },
-        options = list("port" = as.numeric(port))
+        options = list(host = host, 
+                       port = as.numeric(port))
     )
 }
