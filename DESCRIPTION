@@ -1,8 +1,8 @@
 Package: cRomppass
-Title: What the Package Does (one line, title case)
+Title: Score an Affinity Purification Mass Spectrometry Proteomics Experiment for Interactor Confidence
 Version: 0.0.0.9000
 Authors@R: person("David", "Nusinow", , "david_nusinow@hms.harvard.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
+Description: For any given affinity purification mass spectrometry experiment (AP-MS), a large number of non-specific background proteins will contaminate the results unless they are screened out. cRomppass implements the CompPASS algorithm to score a set of bait-prey interactions from several AP-MS experiments against each other or a separate set of prior experiments.
 Depends: R (>= 3.1.1)
 Imports: magrittr (>= 1.5), dplyr
 License: GPL-2 | GPL-3
