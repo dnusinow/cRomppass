@@ -152,7 +152,8 @@ comppass <-function(input, stats = NULL, norm.factor = 0.98) {
         do.call("rbind", .) %>%
         as.data.frame() %>%
         bind_cols(ave.psm, .) %>%
-        select(Experiment.ID, Bait, Prey, AvePSM, SumAPSM, Mean, SD, Little.N, Little.P, Z, WD, Entropy)
+        select(Experiment.ID, Bait, Prey, AvePSM, Z, WD, Entropy)
+        ## select(Experiment.ID, Bait, Prey, AvePSM, SumAPSM, Mean, SD, Little.N, Little.P, Z, WD, Entropy)
 
     if(is.null(norm.value) & (! is.null(norm.factor))) {
         scores$WD <- normalize.wd(scores$WD, norm.factor)
