@@ -6,6 +6,7 @@
 #' @importFrom dplyr ungroup
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
+#' @importFrom magrittr raise_to_power
 
 ## library("dplyr")
 ## library("magrittr")
