@@ -1,5 +1,5 @@
 #' @export
-shine <- function() {
+shine <- function(port = NULL) {
     require("shiny")
     require("cRomppass")
 
@@ -37,7 +37,7 @@ shine <- function() {
 
                 read.delim(indf[1, "datapath"], stringsAsFactors = FALSE)
             })
-                        
+            
             current.scores <- reactive({
                 experiment <- input.experiment()
                 stats <- input.stats()
@@ -59,6 +59,7 @@ shine <- function() {
                                 sep = "\t", row.names = FALSE)
                 }
             )
-        }
+        },
+        options = list("port" = as.numeric(port))
     )
 }
