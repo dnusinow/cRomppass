@@ -112,15 +112,15 @@ comppass <-function(input, stats = NULL, norm.factor = 0.98) {
         stats <- ave.psm
         norm.value <- NULL
     } else {
+        stats.comppass <- comppass(stats, norm.factor = NULL)
+        norm.value <- quantile(stats.comppass$WD, norm.factor)[1]
+        
         stats %<>%
             group_by(Experiment.ID, Prey) %>%
             summarize(Bait = unique(Bait),
                       AvePSM = mean(Spectral.Count),
                       N.Saw = length(which(Spectral.Count > 0))) %>%
             ungroup()
-
-        stats.comppass <- comppass(stats, norm.factor = NULL)
-        norm.value <- quantile(stats.comppass$WD, norm.factor)[1]
     }
 
     n.experiments <- length(unique(stats$Experiment.ID))
