@@ -3,6 +3,10 @@ shine <- function(host = NULL, port = NULL) {
     require("shiny")
     require("cRomppass")
 
+    if(! is.null(port)) {
+        port <- as.numeric(port)
+    }
+    
     shinyApp(
         
         ui = fluidPage(
@@ -60,7 +64,6 @@ shine <- function(host = NULL, port = NULL) {
                 }
             )
         },
-        options = list(host = host, 
-                       port = as.numeric(port))
+        options = list(host = host, port = port)
     )
 }
