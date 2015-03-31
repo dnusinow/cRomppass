@@ -15,7 +15,8 @@ shine <- function(host = NULL, port = NULL) {
                 sidebarPanel(
                     fileInput("experimentUploader", "Experiments"),
                     fileInput("statsUploader", "External Stats"),
-                    textInput("normFactor", "Normalization Factor", value = "0.98")
+                    textInput("normFactor", "Normalization Factor", value = "0.98"),
+                    downloadButton("download.sample.input", "Download Sample Input")
                 ),
                 mainPanel(downloadButton("download.scores", "Download"),
                           dataTableOutput("scores"))
@@ -23,7 +24,7 @@ shine <- function(host = NULL, port = NULL) {
         ),
         
         server = function(input, output) {
-
+            
             input.experiment <- reactive({
                 indf <- input$experimentUploader
                 if(is.null(indf)) {
@@ -63,6 +64,16 @@ shine <- function(host = NULL, port = NULL) {
                                 sep = "\t", row.names = FALSE)
                 }
             )
+
+            output$download.sample.input <- downloadHandler(
+                filename = function() { "comppass_test_data.tsv" },
+                content = function(file) {
+                    data(comppass_test_data)
+                    write.table(comppass.test.data, file,
+                                sep = "\t", row.names = FALSE)
+                }
+            )
+
         },
         options = list(host = host, port = port)
     )
