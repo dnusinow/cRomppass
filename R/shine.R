@@ -10,17 +10,19 @@ shine <- function(host = NULL, port = NULL) {
     shinyApp(
         
         ui = fluidPage(
-            titlePanel("CompPASS"),
             sidebarLayout(
                 sidebarPanel(
+                    imageOutput("comppassLogo", height = "115px", width = "361px"),
                     fileInput("experimentUploader", "Experiments"),
                     fileInput("statsUploader", "External Stats"),
                     textInput("normFactor", "Normalization Factor", value = "0.98"),
                     downloadButton("download.sample.input", "Download Sample Input")
                 ),
-                mainPanel(downloadButton("download.scores", "Download"),
+                mainPanel(##downloadButton("download.scores", "Download"),
+                          uiOutput("download.scores.button"),
                           dataTableOutput("scores"))
-            )
+            ),
+            title = "CompPASS"
         ),
         
         server = function(input, output) {
@@ -57,9 +59,23 @@ shine <- function(host = NULL, port = NULL) {
                 current.scores()
             })
 
+            output$download.scores.button <- renderUI({
+                if(!is.null(current.scores())) {
+                    return(downloadButton("download.scores", "Download"))
+                }
+            })
+
             output$download.scores <- downloadHandler(
-                filename = function() { "comppass_scores.tsv" },
+                filename = function() {
+                    if(is.null(current.scores())) {
+                        return("#")
+                    }
+                    "comppass_scores.tsv"
+                },
                 content = function(file) {
+                    if(is.null(current.scores())) {
+                        return(NULL)
+                    }
                     write.table(current.scores(), file,
                                 sep = "\t", row.names = FALSE)
                 }
@@ -73,6 +89,12 @@ shine <- function(host = NULL, port = NULL) {
                                 sep = "\t", row.names = FALSE)
                 }
             )
+
+            output$comppassLogo <- renderImage({
+                filename <- normalizePath(system.file("extdata", "CompPASS_reflect_logo_smaller.png",
+                                                      package = "cRomppass"))
+                list(src = filename, alt = "CompPASS Logo")
+            }, deleteFile = FALSE)
 
         },
         options = list(host = host, port = port)
