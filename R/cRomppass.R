@@ -1,5 +1,9 @@
 #' cRomppass
 #'
+#' @useDynLib cRomppass
+#' @exportPattern "^[[:alpha:]]+"
+#' @importFrom Rcpp evalCpp
+#' 
 #' @name cRomppass
 #' @docType package
 NULL
