@@ -5,6 +5,21 @@
 
 using namespace Rcpp;
 
+// rcpp_entropy
+NumericVector rcpp_entropy(NumericVector xs);
+RcppExport SEXP cRomppass_rcpp_entropy(SEXP xsSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< NumericVector >::type xs(xsSEXP );
+        NumericVector __result = rcpp_entropy(xs);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // rcpp_hello_world
 List rcpp_hello_world();
 RcppExport SEXP cRomppass_rcpp_hello_world() {
