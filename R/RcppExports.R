@@ -5,6 +5,10 @@ rcpp_entropy <- function(xs) {
     .Call('cRomppass_rcpp_entropy', PACKAGE = 'cRomppass', xs)
 }
 
+normalize_wd <- function(xs, norm_factor) {
+    .Call('cRomppass_normalize_wd', PACKAGE = 'cRomppass', xs, norm_factor)
+}
+
 rcpp_hello_world <- function() {
     .Call('cRomppass_rcpp_hello_world', PACKAGE = 'cRomppass')
 }

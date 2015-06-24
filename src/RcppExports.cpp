@@ -9,28 +9,32 @@ using namespace Rcpp;
 NumericVector rcpp_entropy(NumericVector xs);
 RcppExport SEXP cRomppass_rcpp_entropy(SEXP xsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericVector >::type xs(xsSEXP );
-        NumericVector __result = rcpp_entropy(xs);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type xs(xsSEXP);
+    __result = Rcpp::wrap(rcpp_entropy(xs));
+    return __result;
+END_RCPP
+}
+// normalize_wd
+NumericVector normalize_wd(NumericVector xs, double norm_factor);
+RcppExport SEXP cRomppass_normalize_wd(SEXP xsSEXP, SEXP norm_factorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type xs(xsSEXP);
+    Rcpp::traits::input_parameter< double >::type norm_factor(norm_factorSEXP);
+    __result = Rcpp::wrap(normalize_wd(xs, norm_factor));
+    return __result;
 END_RCPP
 }
 // rcpp_hello_world
 List rcpp_hello_world();
 RcppExport SEXP cRomppass_rcpp_hello_world() {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        List __result = rcpp_hello_world();
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    __result = Rcpp::wrap(rcpp_hello_world());
+    return __result;
 END_RCPP
 }
